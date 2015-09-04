@@ -1,0 +1,113 @@
+body {
+  margin:0;
+  padding:0;
+  background: #faf9e7 url(/assets/back.png) repeat-y left;
+  font-family:Verdana,Arial,sans-serif;
+  font-size:12px;
+}
+
+h1,h2,h3,h4,p,fieldset {
+  margin-left:15px;
+}
+
+h1 {
+  font-size:24px;
+}
+
+h2 {
+  font-size:18px;
+}
+
+h3 {
+  font-size:14px;
+}
+
+h4 {
+  font-size:12px;
+}
+
+p {
+  margin-bottom:15px;
+}
+
+a {
+  color:#93c;
+  text-decoration:none;
+}
+
+a:hover {
+  color:#639;
+  text-decoration:underline;
+}
+
+fieldset {
+  margin-top:25px;
+	margin-bottom:25px;
+  background-color:#c9f;
+  border:1px solid #303;
+  padding:10px;
+}
+
+label {
+  font-weight:bold;
+  text-decoration:underline;
+}
+
+ul {
+	list-style-image:url(/assets/listheart.png);
+}
+
+div#cardinal {
+  width:150px;
+  height:251px;
+  background: #000 url(/assets/cardinal.png) no-repeat top left;
+}
+
+div#menuBar {
+  float:left;
+  width:150px;
+}
+
+div#mainContent {
+  float:left;
+  width:600px;
+}
+
+img#logo {
+  margin-top:20px;
+  margin-left:30px;
+}
+
+img#marilyn {
+  width: 275px;
+  float: right;
+  margin-left:20px;
+}
+
+div#menuBar ul {
+  list-style-image:url(/assets/linkheart.png);
+  padding-left:25px;
+  margin:10px 0px 0px 0px;
+}
+
+div#menuBar li {
+  color:#fdfc94;
+  padding:5px;
+  margin:0;
+}
+
+div#menuBar a {
+  color:#fdfc94;
+  text-decoration:none;
+}
+
+div#menuBar a:hover {
+  color:#fffd42;
+  text-decoration:underline;
+}
+
+p.footnote {
+  font-style:italic;
+  font-size:10px;
+	margin-left:25px;
+}

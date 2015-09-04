@@ -1,0 +1,275 @@
+#!/usr/bin/env boot
+
+(set-env! :dependencies '[[amazonica "0.3.32"]
+                          [hiccup "1.0.5"]])
+(require '[amazonica.aws.s3 :as s3])
+(require '[hiccup.page :refer [xhtml]])
+
+;; Helpers
+
+(defn head [title]
+  [:head
+   [:meta {:http-equiv "Content-Type"
+           :content "text/html; charset=iso-8859-1"}]
+   [:title (str "Hearts Unfolding :: " title)]
+   [:link {:type "text/css" :rel "stylesheet" :href "assets/hearts.css"}]])
+
+(defn chrome [content]
+  [:body
+   [:div#menuBar
+    [:div#cardinal "&nbsp;"]
+    [:ul
+     [:li [:a {:href "/"} "Home"]]
+     [:li [:a {:href "/counseling"} "Counseling"]]
+     [:li [:a {:href "/about-marilyn"} "About Marilyn"]]
+     [:li "More to come!"]]]
+   (into [:div#mainContent
+          [:img#logo {:src "assets/logo.png" :alt "Hearts Unfolding - Marilyn Hein, MA, LPC"}]]
+         content)])
+
+(defn page [key title body]
+  {:key key
+   :content (xhtml (head title)
+                   (chrome body))})
+
+(def counsel-chrome
+  [[:h2 "Counseling"]
+   [:ul
+    [:li [:a {:href "/counseling"} "What do you need?"]]
+    [:li [:a {:href "/what-is-counseling"} "What is counseling?"]]
+    [:li [:a {:href "/how-can-counseling-help"} "How can counseling help you?"]]
+    [:li [:a {:href "/counseling-fees"} "Fees"]]
+    [:li [:a {:href "/counseling-small-groups"} "Small groups"]]
+    [:li [:a {:href "/counseling-vision"} "My vision for helping clients"]]
+    [:li [:a {:href "/counseling-policies"} "Policies"]]
+    [:li [:a {:href "/counseling-location"} "Office Location"]]]])
+
+;; Pages
+
+(def pages
+  [(page "home"
+         "Home"
+         [[:h2 "About Hearts Unfolding"]
+          [:p "Hearts Unfolding began over 30 years ago with my desire to reach out to others who are hurting in relationships as I had been. I longed to encourage others as I had been encouraged by God's Word."]
+          [:p "An idea formed as I thought about my love of hearts, writing, and Psalm 119:130, \"The unfolding of Your Words gives light\". My idea grew into a tri-fold heart-shaped design that expressed what was in my heart. The cardinal to the left is an example of the cover on one of the cards that will become available when that dream becomes reality."]
+          [:p "The artwork for each card shows growth and transformation, because that is what I experienced when I chose to enter into the process of changing my old patterns of thinking that had kept me in hurtful relationships."]
+          [:p "I held onto my desire to produce the encouragement cards while at the same time pursuing my dream to reach out to hurting people through counseling, writing, and speaking. Following my dreams has taken me on a challenging, disruptive, and life-giving journey, which included moving to Seattle, Washington in 2002 to earn my Master of Arts in Counseling and Certification in Domestic Violence Advocacy under the direction of Dr. Dan Allender at Mars Hill Graduate School (now named The Seattle School of Theology and Psychology)."]
+          [:p "My journey continues to unfold in ways that reveal God's faithfulness to guide and provide. Although I had a private practice, Hearts Unfolding Counseling, in Washington, in 2006 I moved back to Wisconsin so I could be near my children and grandchildren. For 8 1/2 years I worked full-time at ASTOP Sexual Abuse Center in Fond du Lac, counseling victims of sexual abuse and leading many groups for these courageous survivors. At the same time, I continued my private counseling practice at an office in Oshkosh. Beginning in 2015, I am now exclusively seeing clients at my private practice in Oshkosh."]
+          [:p "I invite you to explore my web site as it is being developed, and perhaps you'll find that we are journeying together in a shared mystery awaiting surprise encounters with God."]
+          [:p "Phone: " [:strong "920-203-7665"]]
+          [:p "Address: " [:strong "454 Church Avenue, Oshkosh, Wisconsin 54901"]]
+          [:p "E-mail: " [:strong [:a {:href "mailto:HeartsUnfolding@new.rr.com"} "HeartsUnfolding@new.rr.com"]]]])
+
+   (page "to-be-told"
+         "To Be Told"
+         [[:h2 "To Be Told: Know Your Story, Shape Your Future"]
+          [:h3 "by Dan Allender"]
+          [:p "Together we will look for the fingerprints of God in the unfolding story of our lives."]
+          [:p "We will meet for " [:strong "12 weeks"] ", every other Saturday"]
+          [:p [:strong "From:"] " 10:30-12:00"]
+          [:p [:strong "Cost:"] " is $25 per session"]
+          [:p [:strong "Class size:"] " 5 participants"]
+          [:p "Location is 811 N. Lynndale Drive, Appleton, Wisconsin 54914"]
+          [:p "This therapy group will use Dan Allender's workbook To Be Told and his book by the same title as a basis for a journey into our own stories."]
+          [:p "Many of us have struggled to leave the past behind, only to discover that our stories impacted every choice we made and continue to impact our relationships. Dan Allender draws us into deeper curiosity about this impact when he states that we are \"profoundly shaped by the events of our lives and our responses to those events. Our stories impact us either unconsciously or consciously. It's up to us to decide whether we'll be passive recipients or active agents in the shaping of our lives.\""]
+          [:p "Our goal in the group is to connect in healing ways with ourselves and each other as we reflect on the suffering and disappointments we've experienced. Courageously and honestly telling our stories will help meet our need to be known and heard. It also will lead to richer relationships as we become free from the shame and fear that have silenced us in the past. This redemptive journey will ultimately lead to greater joy as God uses our past to open our future."]])
+
+   (page "about-marilyn"
+         "About Marilyn"
+         [[:h2 "About Marilyn"]
+          [:h3 "What expertise do I offer you?"]
+          [:img {:id "marilyn" :src "assets/picture in heart 2013.jpg"}]
+          [:p "For over thirty years I have been gaining expertise in understanding the needs of those hurt by sexual, verbal, emotional, spiritual, and/or physical abuse, as well as the long-term effects of abuse."]
+          [:p "This journey began when I entered counseling to face the trauma of my own childhood sexual abuse and the devastating consequences of my silence about my shameful secret."]
+          [:p "Encouraged by the healing I experienced in individual and group counseling, I obtained extensive training and then began leading groups for survivors of childhood sexual abuse and for mothers of sexual abuse victims."]
+          [:p "To become further qualified, I attended the University of Wisconsin-Fox Valley in Menasha, Wisconsin and then Lawrence University in Appleton, Wisconsin. In 1994, I graduated summa cum laude with a Bachelor of Arts in Psychology."]
+          [:p "In 2002, I moved to Seattle, Washington to attend Mars Hill Graduate School (now named The Seattle School of Theology and Psychology). In December of 2004, I received my Master of Arts in Counseling and Certification in Domestic Violence Advocacy."]
+
+          [:h3 "What life experience help me to understand your needs?"]
+          [:p "My marriage ended in divorce soon after the birth of my seventh child, so I understand the trauma of divorce and the needs of single parents. One of my sons died, so I am intimately acquainted with the grieving process. Because I had spent so many years hiding my pain, denying problems, and pretending I was fine, when my life fell apart, no one believed me when I revealed the truth about the verbal and emotional abuse in my marriage - we had looked so good on the outside. Much rejection from my church and family followed the disclosure of abuse and alcoholism, so I understand the dynamics in a family and a culture that prefers to deny truth and believe the lies of abusers."]
+          [:p "I continue to be in the ongoing process of being transformed by the renewal of my mind (Romans 12:2), so I know how difficult the journey is to change the patterns of thinking and relating that developed in response to childhood trauma, fears, and perceptions. Even more difficult was seeing how I had hurt my children by my old patterns of avoidance, denial of feelings, needing to be right, and people-pleasing. Sorrow over the past feels like walking through the valley of the shadow of death, but it leads to life and freedom."]
+          [:p "I began college when my youngest child began kindergarten, so I know what it is like for a single mom to pursue an education in hopes of following her dreams. When my youngest graduated from high school, I sold my home in Wisconsin and moved to Washington, where I knew no one, to attend Mars Hill Graduate School. I believed that this school would move me along in my journey to become the person I needed to be in order to more effectively meet the needs of others who are hurting."]
+          [:p "Sixteen years earlier, in a counselor training seminar in the Midwest, Dan Allender, author of The Wounded Heart, had said that we can only help others to the degree that we are willing to look at ourselves. I knew I had more work to do on changing me. Indeed, I had more fears to face, more old patterns to change, and more wounds to grieve before I was ready to begin my counseling practice. Thus, I understand that we are all unfinished people in the process of \"becoming.\""]
+
+          [:h3 "Why do I have hope for others?"]
+          [:p "I can have hope for others because:"]
+          [:ul
+           [:li "I have struggled with the doubts, fears, confusion, sadness, depression, anger, and hurt that my clients are struggling with, and experience the ever-increasing freedom that comes with acknowledging feelings - my own and others' - instead of running away from them"]
+           [:li "I intimately know the life-giving joy of relationships when we are no longer hiding behind the mask of pretense."]
+           [:li "I experience the daily unfolding grace that continues to lift me and give me hope when I feel discouraged and hopeless."]
+           [:li "I am learning what it means to love others and myself well, and I desire to pass on the good news about healthy relationships."]]])
+
+   (page "counseling"
+         "Counseling"
+         (into counsel-chrome
+               [[:h3 "What do you need?"]
+                [:p "We've all been hurt, and we've all developed ways to avoid being hurt again. Unfortunately, those ways of trying to make life work often lead to greater pain, and the ways we try to numb or relieve the pain lead to increased problems with finances, health, jobs, and relationships. Most of us hide our feelings and problems from others until difficulties force us to face them."]
+                [:p "If that is where you are in your life, you may be experiencing 1) ongoing sadness and hopelessness along with a feeling of emptiness, 2) high anxiety and fear that controls how you live your daily life, 3) a feeling of being out of control with eating, alcohol, or drug use, 4) an inability to trust anyone, or 5) a conviction that if other people would change, you wouldn't be hurt or angry."]
+                [:p "Many of us don't have the words to explain what is happening, especially if we are in a relationship with someone who 1) puts us down, 2) tells us what we are thinking and feeling, 3) denies or minimizes our needs and feelings, 4) uses anger or withdrawal to silence us, or 5) twists what we say until we are so confused we believe they are right and we are wrong."]
+                [:p "If you are struggling with any of these situations, or if difficulties in your life are forcing you to face the pain you have hidden or denied, you may want to consider counseling."]]))
+
+   (page "what-is-counseling"
+         "Counseling"
+         (into counsel-chrome
+               [[:h3 "What is counseling?"]
+                [:p "Counseling is:"]
+                [:ul
+                 [:li "courageously choosing to face the truth about what is going on inside of you"]
+                 [:li "deeply grieving the disappointments and losses in your life"]
+                 [:li "entering the unfolding, life-giving process of discovering what it means to love yourself and others well."]]
+                [:p "Counseling offers a safe place for you to talk about what is happening in your life. It teaches you how to more fully be who you are and how to live life with more joy in relationships and more peace in stressful situations."]
+                [:p "Counseling is not a \"quick fix\" for problems. Counseling is for your ongoing personal growth, healing, and change." ]
+                [:fieldset "\"Do not conform any longer to the pattern of this world, but be transformed by the renewing of your mind.\" (Romans 12:2, NIV)"]]))
+
+   (page "how-can-counseling-help"
+         "Counseling"
+         (into counsel-chrome
+               [[:h3 "How can counseling help you?"]
+                [:p "Counseling can help you recognize and unlock from old patterns of reacting as you learn new ways of responding in relationships. As you move out of old ways of trying to make life work, you experience ongoing change at the core of who you are, how you feel about yourself, and how you relate to others."]
+                [:p "Be aware that since counseling is not a quick fix, and change is a process, you may be making a commitment for an extended period of time. You will get your money's worth out of counseling and increase the value of your time if you are:"]
+                [:ul
+                 [:li "open to change"]
+                 [:li "desiring honest feedback"]
+                 [:li "committed to lasting change"]]
+                [:p "You will reach your goal of lasting change (transformation from the inside out) if you are willing to:"]
+                [:ul
+                 [:li "look at negative thoughts you have about yourself (these negative beliefs are fear-based and self-protective)"]
+                 [:li "face where your negative thoughts sabotage your efforts to change (negative thoughts prevent us from taking risks, putting ourselves out in front of others, or pursuing a dream)"]
+                 [:li "risk stepping out of your comfort zone (no longer staying where it feels safe and familiar)"]
+                 [:li "focus on changing yourself, not others"]]
+                [:fieldset "\"So we're not giving up. How could we! Even though on the outside it often looks like things are falling apart on us, on the inside, where God is making a new life, not a day goes by without His unfolding.\" (2 Corinthians 4:16, The Message by Eugene Peterson)"]]))
+
+   (page "counseling-fees"
+         "Counseling"
+         (into counsel-chrome
+               [[:h3 "Fees"]
+                [:p "I offer individual, group, couple, and family counseling on a sliding fee scale"]
+                [:ul
+                 [:li "Individual sessions of 50 minutes are $85"]
+                 [:li "Group sessions, which last 1 and a half hours, are $25 for each session"]
+                 [:li "Couple and family sessions, which are scheduled for 80 minutes, are $125 for each session"]]
+                [:h4 "Sliding Fee"]
+                [:p "I accept a limited number of clients on a sliding fee scale. If you would like to request a sliding fee based on your ability to pay, please discuss this with me before the first session. If your financial situation improves during the course of counseling, I respectfully request that you let me know and we will adjust your fee accordingly."]]))
+
+   (page "counseling-small-groups"
+         "Counseling"
+         (into counsel-chrome
+               [[:h3 "Small Groups"]
+                [:ul
+                 [:li "Healing the Trauma of Abuse* (sexual, verbal, emotional, or physical abuse)"]
+                 [:li "Wounded Heart** (for adults who were sexually abused as children)"]
+                 [:li "Mothers, Sing to Your Children's Broken Hearts (meeting the needs of mothers whose children have been sexually abused, so they can in turn meet their children's needs)"]
+                 [:li "To be Told*** (enter the stories of your life with hope and courage)"]]
+                [:p.footnote
+                 "* based on "
+                 [:em "Healing the Trauma of Abuse: A Women's Workbook"]
+                 " by Mary Ellen Copeland, M.A., M.S., and Maxine Harris, Ph.D."]
+                [:p.footnote
+                 "** based on "
+                 [:em "The Wounded Heart: Hope for Adult Victims of Childhood Sexual Abuse"]
+                 " and "
+                 [:em "The Wounded Heart: A Companion Workbook for Personal or Group Use"] " by Dr. Dan Allender"]
+                [:p.footnote
+                 "*** based on "
+                 [:em "To Be Told: Know Your Story, Shape Your Future"]
+                 " by Dr. Dan Allender"]
+                [:h4 "Group Start-up"]
+                [:p "Each time I have at least five people signed up for a particular group, I will begin a new group. In order for trust to develop, groups are closed, which means that after the first session, no one else may join the group."]
+                [:p "I will try to meet the needs of the group members in establishing the day of week, time of day, and location for the group to meet. Since it is best that all members attend each meeting, we will be as flexible as possible by choosing to not meet when it is determined a week ahead of time that one or more members cannot attend a given week."]
+                [:p "Group work is most effective when each member is also in individual counseling. You may choose individual counseling with me or with another counselor."]
+                [:p [:strong "Groups cost $25.00 each session and run for 12 weeks."]]
+                [:fieldset "You keep track of all my sorrows. You have collected all my tears in your bottle. You have recorded each one in your book. (Psalm 56:8)"]]))
+
+   (page "counseling-vision"
+         "Counseling"
+         (into counsel-chrome
+               [[:h3 "My Vision for Helping Clients"]
+                [:p "We have all been hurt, and we have all developed coping strategies that interfere with how we live our lives. It takes courage to open your heart and choose to change from the inside out."]
+                [:p "I can help you..."]
+                [:ul
+                 [:li "recognize relational patterns you developed to protect yourself from being hurt"]
+                 [:li "identify how you try to control others to avoid facing your own fears"]
+                 [:li "unlock from old patterns of reacting as you choose new ways of responding"]]
+                [:p "I focus on..."]
+                [:ul
+                 [:li "exploring present relationships with attention to how you are repeating coping strategies that no longer work"]
+                 [:li "identifying how you have disconnected from your feelings in order to cope with pain, disappointment, and the trauma of abuse in your life"]
+                 [:li "encouraging you to break the silence of abuse, face your fears, and grieve your sorrows"]]
+                [:p "I am committed to..."]
+                [:ul
+                 [:li "affirming your dignity as you work through the issues that brought you to counseling"]
+                 [:li "hearing with my heart and responding from my heart to bring truth and grace into your stories"]
+                 [:li "being in this journey toward healing with you as a skilled listener who will \"walk beside\" you as you explore the mystery of who you are and discover how your view of yourself impacts your relationships with others"]]
+                [:fieldset "\"...being confident of this, that He who began a good work in you will carry it on to completion until the day of Christ Jesus.\" (Philippians 1:6)"]]))
+
+   (page "counseling-policies"
+         "Counseling"
+         (into counsel-chrome
+               [[:h3 "Policies"]
+                [:p [:label "Payment of Fees:"] " Payment of fees is expected at the time of appointment."]
+                [:p [:label "Phone Calls:"] " Phone calls are free for the first ten minutes, and then will be charged per your established fee."]
+                [:p
+                 [:label "Cancellation of Appointments:"]
+                 " If you need to cancel your appointment, please let me know "
+                 [:em "at least 24 hours"]
+                 " in advance. Missed sessions or cancellations within 24 hours of a scheduled appointment will be charged at the hourly fee."]
+                [:p
+                 [:label "Confidentiality:"]
+                 " I am bound by professional ethics to protect client rights to confidential communications in regards to their involvement in counseling. "
+                 [:em "All issues discussed in the course of counseling are strictly confidential."]
+                 " By law, health care information pertaining to you may be released only with your written consent or the consent of a parent or guardian."]
+                [:p [:label "Termination:"] " It is every client's right to disengage from counseling with or without notice to the treatment provider. However, I would appreciate notification of termination of therapy. I find it helpful to arrange a final session to explore termination and review counseling goals and progress."]]))
+
+   (page "counseling-location"
+         "Counseling"
+         (into counsel-chrome
+               [[:h3 "Office Location"]
+                [:p "454 Church Avenue" [:br] "Oshkosh, WI 54901"]]))
+
+   (page "error"
+         "Oops!"
+         [[:h1 "We couldn't find what you're looking for"]
+          [:p [:a {:href "/"} "Go back to the home page"]]])])
+
+
+(def assets
+  (let [directory (clojure.java.io/file "assets")]
+    (drop 1 (file-seq directory))))
+
+
+(defn content-type
+  [filename]
+  (cond
+    (.endsWith filename ".png") "image/png"
+    (.endsWith filename ".gif") "image/gif"
+    (.endsWith filename ".jpg") "image/jpg"
+    (.endsWith filename ".css") "text/css"))
+
+
+(def bucket-name "heartsunfolding.com")
+
+
+(defn put-page
+  [{:keys [key content]}]
+  (println "Putting" key)
+  (s3/put-object :bucket-name bucket-name
+                 :key key
+                 :input-stream (java.io.ByteArrayInputStream. (.getBytes content "UTF-8"))
+                 :metadata {:content-length (count content)
+                            :content-type "text/html"}))
+
+
+(defn put-asset
+  [file]
+  (let [key (.getPath file)]
+    (println "Putting" key)
+    (s3/put-object :bucket-name bucket-name
+                   :key key
+                   :file file
+                   :metadata {:content-length (.length file)
+                              :content-type (content-type key)})))
+
+
+(defn -main [& args]
+  (dorun (map put-page pages))
+  (dorun (map put-asset assets)))
