@@ -1,6 +1,6 @@
 #!/usr/bin/env boot
 
-(set-env! :dependencies '[[amazonica "0.3.32"]
+(set-env! :dependencies '[[amazonica "0.3.141"]
                           [hiccup "1.0.5"]])
 (require '[amazonica.aws.s3 :as s3])
 (require '[hiccup.page :refer [xhtml]])
@@ -56,7 +56,7 @@
           [:p "I held onto my desire to produce the encouragement cards while at the same time pursuing my dream to reach out to hurting people through counseling, writing, and speaking. Following my dreams has taken me on a challenging, disruptive, and life-giving journey, which included moving to Seattle, Washington in 2002 to earn my Master of Arts in Counseling and Certification in Domestic Violence Advocacy under the direction of Dr. Dan Allender at Mars Hill Graduate School (now named The Seattle School of Theology and Psychology)."]
           [:p "My journey continues to unfold in ways that reveal God's faithfulness to guide and provide. Although I had a private practice, Hearts Unfolding Counseling, in Washington, in 2006 I moved back to Wisconsin so I could be near my children and grandchildren. For 8 1/2 years I worked full-time at ASTOP Sexual Abuse Center in Fond du Lac, counseling victims of sexual abuse and leading many groups for these courageous survivors. At the same time, I continued my private counseling practice at an office in Oshkosh. Beginning in 2015, I am now exclusively seeing clients at my private practice in Oshkosh."]
           [:p "I invite you to explore my web site as it is being developed, and perhaps you'll find that we are journeying together in a shared mystery awaiting surprise encounters with God."]
-          [:p "Phone: " [:strong "920-203-7665"]]
+          [:p "Phone: " [:strong "920-203-7021"]]
           [:p "Address: " [:strong "454 Church Avenue, Oshkosh, Wisconsin 54901"]]
           [:p "E-mail: " [:strong [:a {:href "mailto:HeartsUnfolding@new.rr.com"} "HeartsUnfolding@new.rr.com"]]]])
 
